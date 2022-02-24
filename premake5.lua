@@ -1,8 +1,8 @@
 project "OpenAL-Soft"
 	kind "StaticLib"
 	language "C++"
-	cppdialect "C++14"
-	staticruntime "on"
+	cppdialect "c++17"
+	staticruntime "On"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -176,8 +176,11 @@ project "OpenAL-Soft"
 	defines
 	{
 		"AL_LIBTYPE_STATIC",
-		"RESTRICT=__restrict"
+		"RESTRICT=__restrict",
+		"_GNU_SOURCE"
 	}
+
+	disablewarnings { "5030", "4065" }
 	
 	filter "system:windows"
 		systemversion "latest"
@@ -192,7 +195,7 @@ project "OpenAL-Soft"
 			"_WIN32_WINNT=0x0502",
 			"_CRT_SECURE_NO_WARNINGS",
 			"NOMINMAX",
-			"CMAKE_INTDIR=\"Debug\"",
+			--"CMAKE_INTDIR=\"Debug\"",
 			"OpenAL_EXPORTS"
 		}
 
@@ -203,8 +206,10 @@ project "OpenAL-Soft"
 
 	filter "configurations:Debug"
 		runtime "Debug"
-		symbols "on"
+		symbols "On"
 
 	filter "configurations:Release"
 		runtime "Release"
-		optimize "on"
+		optimize "Full"	-- release version --
+		inlining "Auto"
+		floatingpoint "Fast"

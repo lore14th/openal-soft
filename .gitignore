@@ -7,3 +7,10 @@ win64build
 
 ## qt-creator
 CMakeLists.txt.user*
+*.idb
+*.lib
+*.pdb
+bin-int
+*.vcxproj
+*.filters
+*.user
