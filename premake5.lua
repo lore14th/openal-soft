@@ -2,7 +2,7 @@ project "openal-soft"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "c++17"
-	staticruntime "On"
+	staticruntime "Off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -210,6 +210,10 @@ project "openal-soft"
 
 	filter "configurations:Release"
 		runtime "Release"
-		optimize "Full"	-- release version --
-		inlining "Auto"
-		floatingpoint "Fast"
+		optimize "On"
+		symbols "On"
+
+	filter "configurations:Distribution"
+		runtime "Release"
+		optimize "On"
+		symbols "Off"
