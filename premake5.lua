@@ -180,7 +180,7 @@ project "openal-soft"
 		"_GNU_SOURCE"
 	}
 
-	disablewarnings { "5030", "4065", "4834" }
+	disablewarnings { "5030", "4065", "4834", "4858" }
 	
 	filter "system:windows"
 		systemversion "latest"
